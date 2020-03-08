@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Apple SD Gothic Neo';
+    margin: 0 auto;
+    padding-bottom: 50px;
+    width: 700px;
+}
+
+.title {
+  font-weight: bold;
+  padding-top: 50px;
+  display: inline-block;
+  margin-bottom: 9px;
+}
+.title h1 {
+  color: #2a2a2a;
+  font-size: 36px;
+  display: inline-block;
+  margin: 0;
+}
+.title h2 {
+  font-size: 18px;
+  display: inline-block;
+  color: #474747;
+  margin: 0;
+  letter-spacing: -1.2px;
+}
+
+/* sub-title */
+
+.sub-title {
+  margin-bottom: 41px;
+}
+.sub-title h2 {
+    font-size: 14px;
+    margin: 0;
+}
+.sub-title a {
+    margin-left: 12px;
+    color: #646464;
+}
+
+/* today */
+.today {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 21px;
+}
+
+/* detail */
+.detail {
+}
+
+.detail img {
+    border-radius: 50%;
+    display: inline;
+    vertical-align: middle;
+}
+.detail h2 {
+    display: inline;
+    margin-left: 6px;
+    font-size: 16px;
+    vertical-align: middle;
+}
+.formTitle {
+    margin: 0;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 11px;
+}
+.formContainer {
+    display: flex;
+    margin-bottom: 17px;
+}
+.formItem + .formItem {
+    margin-left: 20px;
+}
+/*
+
+.inputstr2 {
+    border: 0px;
+    resize: none;
+    line-height: normal;
+    padding: .8em .5em;
+    width: 340px;
+    height: 105px;
+    background-color: #fbfbfb;
+}
+*/
+.inputstr3 {
+    border: 0px;
+    color: #2a2a2a;
+    font-size: 12px;
+    resize: none;
+    line-height: normal;
+    padding: .8em .5em;
+    width: 340px;
+    height: 105px;
+    background-color: #fbfbfb;
+}
