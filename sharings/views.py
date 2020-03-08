@@ -14,6 +14,5 @@ def detail(request, sharing_id):
         'id': sharing_id,
     })
 
-
 def detail_temp(request):
     return HttpResponseRedirect('/detail/1')
