@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.sharings, name='sharings'),
     path('detail/<int:sharing_id>/', views.detail, name='detail'),
+    path('detail/', views.detail_temp),
 ]
 
 
