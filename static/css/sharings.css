@@ -1,0 +1,148 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Apple SD Gothic Neo';
+    margin: 0 auto;
+    width: 700px;
+}
+/* title */
+
+.title {
+  font-weight: bold;
+  padding-top: 50px;
+  display: inline-block;
+  margin-bottom: 9px;
+}
+.title h1 {
+  color: #2a2a2a;
+  font-size: 36px;
+  display: inline-block;
+  margin: 0;
+}
+.title h2 {
+  font-size: 18px;
+  display: inline-block;
+  color: #474747;
+  margin: 0;
+  letter-spacing: -1.2px;
+}
+
+/* sub-title */
+
+.sub-title {
+  margin-bottom: 46px;
+}
+.sub-title h2 {
+    font-size: 14px;
+    margin: 0;
+}
+.sub-title a {
+    margin-left: 12px;
+    color: #646464;
+}
+/* checkin */
+.checkin {
+    position: relative;
+    margin: 0;
+    width: 700px;
+    height: 226px;
+    margin-bottom: 40px;
+}
+
+.checkin > .highlight {
+    position: absolute;
+    left: -15px;
+    top: 0;
+    width: 3px;
+    border-radius: 3px;
+    background-color: #55C796;
+    height: 100%;
+}
+
+.checkin h1 {
+    width: 340px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+.textbox1 {
+    width: 340px;
+    display: inline;
+    float: left;
+    margin-right: 20px;
+}
+.textbox2 {
+    width: 340px;
+    display: inline;
+    float: left;
+}
+.textbox1 h2, .textbox2 h2 {
+    margin: 0;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 11px;
+}
+/*
+.inputstr2 {
+    border: 0px;
+    resize: none;
+    line-height: normal;
+    padding: .8em .5em;
+    width: 340px;
+    height: 105px;
+    background-color: #fbfbfb;
+}
+*/
+.inputstr3 {
+    border: 0px;
+    color: #cacaca;
+    font-size: 12px;
+    resize: none;
+    line-height: normal;
+    padding: .8em .5em;
+    width: 340px;
+    height: 105px;
+    background-color: #fbfbfb;
+}
+button {
+    width: 154px;
+    height: 40px;
+    border-radius: 4px;
+    float: right;
+    background-color: #55c796;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 20px;
+    border: none;
+    border-color: #53ad78;
+}
+button h3 {
+    font-size: 16px;
+    margin: 0;
+    color: white;
+}
+/* info */
+.info {
+    padding-top: 20px;
+    padding-bottom: 11px;
+}
+.info h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #2a2a2a;
+}
+.link {
+    text-decoration: none;
+    border-width: 1px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-style: solid;
+    border-color: #f1f1f1;
+    display: block;
+}
+.images img {
+    border-radius: 50%;
+}
