@@ -1,11 +1,7 @@
 <div class="container pt-5">
-    <h1>THETA Dream and Build Management Dashboard</h1>
+    <h1>Login</h1>
 
     {% if user.is_authenticated %}
-    <h2>
-        <a href="/admin/">Go To Dashboard</a>
-    </h2>
-    <hr>
     <a class="btn btn-primary mt-5" href="{% url 'logout' %}">Logout</a>
     {% else %}
 
