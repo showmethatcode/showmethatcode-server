@@ -101,7 +101,7 @@ body {
     font-size: 12px;
     resize: none;
     line-height: normal;
-    padding: .8em .5em;
+    padding: 8px;
     width: 340px;
     height: 105px;
     background-color: #fbfbfb;
@@ -142,6 +142,9 @@ button h3 {
     border-style: solid;
     border-color: #f1f1f1;
     display: block;
+}
+.images {
+    margin-bottom: 20px;
 }
 .images img {
     border-radius: 50%;
