@@ -6,14 +6,6 @@ from showmethatcode.views import account
 from sharings import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.sharings, name='sharings'),
-    path('detail/<int:sharing_id>/', views.detail, name='detail'),
-    path('detail/', views.detail_temp),
-]
-
-
-urlpatterns = [
     path('admin/', admin.site.urls, name='administrator'),
     path('', include('social_django.urls', namespace='social')),
     # path('', views_main.index, name='index'),
@@ -25,4 +17,5 @@ urlpatterns = [
     path('account/', account, name='account'),
     path('', views.sharings, name='sharings'),
     path('detail/<int:sharing_id>/', views.detail, name='detail'),
+    path('detail/', views.detail_temp),
 ]
