@@ -11,15 +11,19 @@
 
 [showmethatcode Repository](https://github.com/showmethatcode/showmethatcode-server)
 ```bash
+$ mkdir showmethatcode && cd showmethatcode
 $ git clone git@github.com:showmethatcode/showmethatcode-server.git
 ```
 
 ### `pip` & 가상환경 라이브러리 설치 및 실행
 ```bash
-$ sudo easy_install pip
-$ sudo pip install virtualenv
+$ easy_install pip3
+$ pip3 install virtualenv
 $ virtualenv -p python3 venv
 $ source venv/bin/activate
+
+# 성공했을경우 맨 앞에 (venv)라는 표시가 나타남
+(venv)$ cd showmethatcode
 ```
 
 ### `requirements` 라이브리러 설치
