@@ -26,8 +26,7 @@ SECRET_KEY = '_q7$2)^i1_ufv-*6duq0mha(=sb(!ij-dme#-t*i4i0q8dw%)t'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+AUTH_USER_MODEL='users.User'
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,9 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
-
-INSTALLED_APPS += [
+    'sharings.apps.SharingsConfig',
+    'users.apps.UsersConfig',
     'sharings',
     'social_django',
     'showmethatcode',
