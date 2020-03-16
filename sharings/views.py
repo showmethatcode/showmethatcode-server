@@ -1,14 +1,10 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.http import HttpResponse
 from sharings.models import Sharings
 from django.urls import reverse
 from django.contrib.auth import get_user_model, get_user
 
 # views = 비지니스 로직
-def sharings(request):
-    return render(request, 'sharings.html')
-
-
 def detail(request, sharing_id):
     return render(request, 'detail.html', {
         'id': sharing_id,
@@ -22,6 +18,7 @@ def detail_temp(request):
 def home(request):
     if request.method =='GET':
         return render(request, 'sharings.html')
+
 
 def write(request):
     if request.method == 'POST':
@@ -42,7 +39,7 @@ def write(request):
         if not error_message and user.is_authenticated:
             sharings = Sharings.objects.create(created_at=created_at, til=til, action_plan=action_plan, user=user)
             sharings.save()
-            return render(request, 'sharings.html')
+            return redirect('/')
         else:
             return render(request, 'sharings.html', {
                 'error_message': error_message
