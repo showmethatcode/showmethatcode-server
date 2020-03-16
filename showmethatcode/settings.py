@@ -36,9 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sharings.apps.SharingsConfig',
     'users.apps.UsersConfig',
-    'sharings',
+    'sharings.apps.SharingsConfig',
     'social_django',
     'showmethatcode',
 ]

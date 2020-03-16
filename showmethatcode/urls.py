@@ -15,7 +15,8 @@ urlpatterns = [
         name='logout'
         ),
     path('account/', account, name='account'),
-    path('', views.sharings, name='sharings'),
+    path('', views.home, name='sharings'),
+    path('write/', views.write, name='write'),
     path('detail/<int:sharing_id>/', views.detail, name='detail'),
     path('detail/', views.detail_temp),
 ]

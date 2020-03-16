@@ -13,21 +13,27 @@
    <div class='sub-title'>
        <h2>🙌 매일 오후 11시, 오늘 배운 것과 내일 계획을 공유합니다. <a href='index_introduction.html'>showmethatcode 팀 소개</a></h2>
    </div>
-   <div class='checkin'>
-        <div class="highlight"></div>
-        <h1>🔥 체크인</h1>
-        <div class='textbox1'>
-          <h2>오늘 배운 것</h2>
-          <textarea placeholder='* Sticky Session에 대해 공부함
-* RDS를 처음 사용해봄'class='inputstr3'></textarea>
+   <form action="/write/" method='POST'>
+        {% csrf_token %}
+        <div class='checkin'>
+            <div class="highlight"></div>
+            <h1>🔥 체크인</h1>
+            <div class='textbox1'>
+            <h2>오늘 배운 것</h2>
+            <textarea name="til" placeholder='* Sticky Session에 대해 공부함
+    * RDS를 처음 사용해봄'class='inputstr3'></textarea>
+            </div>
+            <div class='textbox2'>
+            <h2>내일 계획</h2>
+            <textarea name="action_plan" placeholder='* Sticky Session에 대해 공부함
+    * RDS를 처음 사용해봄'class='inputstr3'></textarea>
+            </div>
+            {% if error_message %}
+                <p>{{ error_message }}</p>
+            {% endif %}
+            <button type="submit"><h3>작성 완료</h3></button>
         </div>
-        <div class='textbox2'>
-          <h2>내일 계획</h2>
-          <textarea placeholder='* Sticky Session에 대해 공부함
-* RDS를 처음 사용해봄'class='inputstr3'></textarea>
-        </div>
-        <button><h3>작성 완료</h3></button>
-    </div>
+    </form>
 
 
 
