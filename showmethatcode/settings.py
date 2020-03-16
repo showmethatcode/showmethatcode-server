@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sharings.apps.SharingsConfig',
     'users.apps.UsersConfig',
+    'sharings',
     'social_django',
-    'showmethatcode'
+    'showmethatcode',
 ]
 
 MIDDLEWARE = [
