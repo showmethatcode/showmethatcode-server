@@ -37,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sharings.apps.SharingsConfig',
+]
+
+INSTALLED_APPS += [
+    'sharings',
     'social_django',
-    'showmethatcode'
+    'showmethatcode',
 ]
 
 MIDDLEWARE = [
