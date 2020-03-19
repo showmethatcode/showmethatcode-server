@@ -2,7 +2,7 @@
 {% load static %}
 <html>
  <head>
-    <title>YYYY년 M월 D일 Sharing - showmethatcode</title>
+    <title>YYYY년 M월 D일    - showmethatcode</title>
     <meta charset="utf-8">
     <link href="{% static 'css/detail.css' %}" rel='stylesheet'>
  </head>
@@ -13,90 +13,25 @@
    <div class='sub-title'>
        <h2>🙌 매일 오후 11시, 오늘 배운 것과 내일 계획을 공유합니다. <a href='index_introduction.html'>showmethatcode 팀 소개</a></h2>
    </div>
-   <div class='today'>2020년 3월 7일 토요일</div>
+   <div class='today'>{{ date }}</div>
 <div>
+    {% for sharing in sharings %}
     <div class='detail'>
-        <img src="{% static 'images/sangmin.png' %}" width='26'height='26'><h2>박상민</h2>
+        <img src="{% static 'images/sangmin.png' %}" width='26'height='26'><h2>{{ sharing.user }}</h2>
     </div>
     <div class="formContainer">
         <div class="formItem">
             <h2 class="formTitle">📝 오늘 배운 것</h2>
             <div class='inputstr3'>
-                * Sticky Session에 대해 공부함<br>
-                * RDS를 처음 사용해봄
-            </div> 
+                {{ sharing.til }}
+            </div>
         </div>
         <div class="formItem">
             <h2 class="formTitle">🙏 내일 계획</h2>
             <div class='inputstr3'>
-                * Sticky Session에 대해 공부함<br>
-                * RDS를 처음 사용해봄
-            </div> 
+                {{ sharing.action_plan }}
+            </div>
         </div>
     </div>
 </div>
-<div>
-    <div class='detail'>
-        <img src="{% static 'images/hoseon.png' %}" width='26'height='26'><h2>이호선</h2>
-    </div>
-    <div class="formContainer">
-        <div class="formItem">
-            <h2 class="formTitle">📝 오늘 배운 것</h2>
-            <div class='inputstr3'>
-                * Sticky Session에 대해 공부함<br>
-                * RDS를 처음 사용해봄
-            </div> 
-        </div>
-        <div class="formItem">
-            <h2 class="formTitle">🙏 내일 계획</h2>
-            <div class='inputstr3'>
-                * Sticky Session에 대해 공부함<br>
-                * RDS를 처음 사용해봄
-            </div> 
-        </div>
-    </div>
-</div>
-<div>
-    <div class='detail'>
-        <img src="{% static 'images/woosik.png' %}" width='26'height='26'><h2>김우식</h2>
-    </div>
-    <div class="formContainer">
-        <div class="formItem">
-            <h2 class="formTitle">📝 오늘 배운 것</h2>
-            <div class='inputstr3'>
-                * Sticky Session에 대해 공부함<br>
-                * RDS를 처음 사용해봄
-            </div> 
-        </div>
-        <div class="formItem">
-            <h2 class="formTitle">🙏 내일 계획</h2>
-            <div class='inputstr3'>
-                * Sticky Session에 대해 공부함<br>
-                * RDS를 처음 사용해봄
-            </div> 
-        </div>
-    </div>
-</div>
-<div>
-    <div class='detail'>
-        <img src="{% static 'images/hyeonsu.png' %}" width='26'height='26'><h2>이현수</h2>
-    </div>
-    <div class="formContainer">
-        <div class="formItem">
-            <h2 class="formTitle">📝 오늘 배운 것</h2>
-            <div class='inputstr3'>
-                * Sticky Session에 대해 공부함<br>
-                * RDS를 처음 사용해봄
-            </div> 
-        </div>
-        <div class="formItem">
-            <h2 class="formTitle">🙏 내일 계획</h2>
-            <div class='inputstr3'>
-                * Sticky Session에 대해 공부함<br>
-                * RDS를 처음 사용해봄
-            </div> 
-        </div>
-    </div>
-</div>
-</body>
-</html>
+{% endfor %}

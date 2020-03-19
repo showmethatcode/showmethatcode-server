@@ -1,13 +1,18 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.http import HttpResponse
-from sharings.models import Sharings
+from sharings.models import Sharing, SharingGroup
 from django.urls import reverse
 from django.contrib.auth import get_user_model, get_user
+import datetime
 
-# views = 비지니스 로직
+#s views = 비지니스 로직
 def detail(request, sharing_id):
+    sharing_group = SharingGroup.objects.get(pk=sharing_id)
+    sharings = sharing_group.sharing_set.all()
     return render(request, 'detail.html', {
         'id': sharing_id,
+        'date': sharing_group.date,
+        'sharings': sharings
     })
 
 
@@ -17,7 +22,16 @@ def detail_temp(request):
 
 def home(request):
     if request.method =='GET':
-        return render(request, 'sharings.html')
+        sharing_groups = SharingGroup.objects.all().order_by('-date')[:7]
+        # sharings = []
+        # for group in sharing_groups:
+        #     sharing = group.sharing_set.get()
+        #     sharings.append(sharing)
+
+        return render(request, 'sharings.html', {
+            'groups': sharing_groups,
+            # 'sharings': sharings
+        })
 
 
 def write(request):
@@ -25,19 +39,22 @@ def write(request):
         created_at = request.POST.get('created_at', '')
         til = request.POST.get('til', '')
         action_plan = request.POST.get('action_plan', '')
-
         error_message = ''
 
         if til == '':
             error_message = 'TIL을 작성하시오'
-            
+
         if action_plan == '':
             error_message = '내일 무엇을 할거죠?'
 
         user = get_user(request)
-    
+        date = datetime.datetime.now().date() # ex) 2020-03-20
+
+        sharing_group, flag = SharingGroup.objects.get_or_create(date=date)
+        group_id = sharing_group.id
+
         if not error_message and user.is_authenticated:
-            sharings = Sharings.objects.create(created_at=created_at, til=til, action_plan=action_plan, user=user)
+            sharings = Sharing.objects.create(created_at=created_at, til=til, action_plan=action_plan, user=user, sharing_id=group_id)
             sharings.save()
             return redirect('/')
         else:
