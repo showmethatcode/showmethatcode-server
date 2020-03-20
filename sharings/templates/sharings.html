@@ -36,11 +36,10 @@
     </form>
 
 
-
-
-    <a class='link' href='detail/'>
+    {% for group in groups %}
+    <a class='link' href='detail/{{ group.id }}'>
         <div class='info'>
-        <h2>2020년 3월 7일 토요일</h2>
+        <h2>{{ group.date }}</h2>
     </div>
     <div class='images'>
         <img src="{% static 'images/hyeonsu.png' %}" width='50'height='50'</div>
@@ -49,71 +48,6 @@
         <img src="{% static 'images/woosik.png' %}" width='50'height='50'</div>
     </div>
     </a>
-    <a class='link' href='detail/'>
-        <div class='info'>
-        <h2>2020년 3월 6일 금요일</h2>
-    </div>
-    <div class='images'>
-        <img src="{% static 'images/hyeonsu.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/sangmin.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/hoseon.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/woosik.png' %}" width='50'height='50'</div>
-    </div>
-    </a>
-    <a class='link'href='detail/'>
-        <div class='info'>
-        <h2>2020년 3월 5일 목요일</h2>
-    </div>
-    <div class='images'>
-        <img src="{% static 'images/hyeonsu.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/sangmin.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/hoseon.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/woosik.png' %}" width='50'height='50'</div>
-    </div>
-    </a>
-    <a class='link'href='detail/'>
-        <div class='info'>
-        <h2>2020년 3월 4일 수요일</h2>
-    </div>
-    <div class='images'>
-        <img src="{% static 'images/hyeonsu.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/sangmin.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/hoseon.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/woosik.png' %}" width='50'height='50'</div>
-    </div>
-    </a>
-    <a class='link'href='detail/'>
-        <div class='info'>
-        <h2>2020년 3월 3일 화요일</h2>
-    </div>
-    <div class='images'>
-        <img src="{% static 'images/hyeonsu.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/sangmin.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/hoseon.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/woosik.png' %}" width='50'height='50'</div>
-    </div>
-    </a>
-    <a class='link'href='detail/'>
-        <div class='info'>
-        <h2>2020년 3월 2일 월요일</h2>
-    </div>
-    <div class='images'>
-        <img src="{% static 'images/hyeonsu.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/sangmin.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/hoseon.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/woosik.png' %}" width='50'height='50'</div>
-    </div>
-    </a>
-    <a class='link'href='detail/'>
-        <div class='info'>
-        <h2>2020년 3월 1일 일요일</h2>
-    </div>
-    <div class='images'>
-        <img src="{% static 'images/hyeonsu.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/sangmin.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/hoseon.png' %}" width='50'height='50'</div>
-        <img src="{% static 'images/woosik.png' %}" width='50'height='50'</div>
-    </div>
-    </a>
+    {% endfor %}
     </body>
 </html>
