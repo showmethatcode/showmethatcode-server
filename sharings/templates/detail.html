@@ -2,7 +2,7 @@
 {% load static %}
 <html>
  <head>
-    <title>YYYY년 M월 D일    - showmethatcode</title>
+    <title>{{ date }} - showmethatcode</title>
     <meta charset="utf-8">
     <link href="{% static 'css/detail.css' %}" rel='stylesheet'>
  </head>
@@ -17,19 +17,19 @@
 <div>
     {% for sharing in sharings %}
     <div class='detail'>
-        <img src="{% static 'images/sangmin.png' %}" width='26'height='26'><h2>{{ sharing.user }}</h2>
+        <img src="{% static 'images/hoseon.png' %}" width='26'height='26'><h2>{{ sharing.user }}</h2>
     </div>
     <div class="formContainer">
         <div class="formItem">
             <h2 class="formTitle">📝 오늘 배운 것</h2>
             <div class='inputstr3'>
-                {{ sharing.til }}
+                {{ sharing.til|linebreaksbr }}
             </div>
         </div>
         <div class="formItem">
             <h2 class="formTitle">🙏 내일 계획</h2>
             <div class='inputstr3'>
-                {{ sharing.action_plan }}
+                {{ sharing.action_plan|linebreaksbr }}
             </div>
         </div>
     </div>
