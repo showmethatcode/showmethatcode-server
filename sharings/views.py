@@ -23,14 +23,12 @@ def detail_temp(request):
 def home(request):
     if request.method =='GET':
         sharing_groups = SharingGroup.objects.all().order_by('-date')[:7]
-        # sharings = []
-        # for group in sharing_groups:
-        #     sharing = group.sharing_set.get()
-        #     sharings.append(sharing)
+        sharing_today = Sharing.objects.filter(user=request.user, created_at__date=datetime.date.today())
+        can_check_in = len(sharing_today) == 0
 
         return render(request, 'sharings.html', {
             'groups': sharing_groups,
-            # 'sharings': sharings
+            'can_check_in': can_check_in,
         })
 
 
@@ -45,7 +43,7 @@ def write(request):
             error_message = 'TIL을 작성하시오'
 
         if action_plan == '':
-            error_message = '내일 무엇을 할거죠?'
+            error_message = 'Action Plan을 작성하시오'
 
         user = get_user(request)
         date = datetime.datetime.now().date() # ex) 2020-03-20
@@ -61,4 +59,3 @@ def write(request):
             return render(request, 'sharings.html', {
                 'error_message': error_message
             })
-

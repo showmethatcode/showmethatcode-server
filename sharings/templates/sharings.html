@@ -13,8 +13,9 @@
    <div class='sub-title'>
        <h2>🙌 매일 오후 11시, 오늘 배운 것과 내일 계획을 공유합니다. <a href='index_introduction.html'>showmethatcode 팀 소개</a></h2>
    </div>
+   {% if can_check_in %}
    <form action="/write/" method='POST'>
-        {% csrf_token %}
+    {% csrf_token %}
         <div class='checkin'>
             <div class="highlight"></div>
             <h1>🔥 체크인</h1>
@@ -34,8 +35,7 @@
             <button type="submit"><h3>작성 완료</h3></button>
         </div>
     </form>
-
-
+    {% endif %}
     {% for group in groups %}
     <a class='link' href='detail/{{ group.id }}'>
         <div class='info'>
