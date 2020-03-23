@@ -97,9 +97,7 @@ DATABASES = {
     }
 }
 
-CSRF_COOKIE_SECURE = True
-
-
+CSRF_COOKIE_SECURE = False
 
 
 # Password validation
