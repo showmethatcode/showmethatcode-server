@@ -72,30 +72,30 @@ TEMPLATES = [
 WSGI_APPLICATION = 'showmethatcode.wsgi.application'
 
 
-# db_name = os.getenv('MYSQL_DB_NAME', 'showmethatcode')
-# db_user = os.getenv('MYSQL_DB_USER', 'root')
-# db_password = os.getenv('MYSQL_DB_PASSWORD') # 환경변수 세팅 필요
-# db_host = os.getenv('MYSQL_DB_HOST', 'localhost')
-# db_port = os.getenv('MYSQL_DB_PORT', '3306')
+db_name = os.getenv('MYSQL_DB_NAME', 'showmethatcode')
+db_user = os.getenv('MYSQL_DB_USER', 'root')
+db_password = os.getenv('MYSQL_DB_PASSWORD') # 환경변수 세팅 필요
+db_host = os.getenv('MYSQL_DB_HOST', 'localhost')
+db_port = os.getenv('MYSQL_DB_PORT', '3306')
 
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': db_name,
-#         'USER': db_user,
-#         'PASSWORD': db_password,
-#         'HOST': db_host,
-#         'PORT': db_port,
-#     }
-# }
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': db_name,
+        'USER': db_user,
+        'PASSWORD': db_password,
+        'HOST': db_host,
+        'PORT': db_port,
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 CSRF_COOKIE_SECURE = False
 
