@@ -13,7 +13,7 @@ class UserManager(UserManager):
         return super(UserManager, self).create(*args, **kwargs)
 
 class User(AbstractBaseUser):
-    email = models.CharField(unique=True, verbose_name='유저아이디')
+    email = models.CharField(unique=True, max_length=200, verbose_name='유저아이디')
     is_team_member = models.BooleanField(verbose_name='팀 멤버 유무', default=False)
 
     objects = UserManager()
