@@ -17,7 +17,7 @@
 <div>
     {% for sharing in sharings %}
     <div class='detail'>
-        <img src="{% static 'images/hoseon.png' %}" width='26'height='26'><h2>{{ sharing.user }}</h2>
+        <img src="{{ sharing.user.user_profile }}" width='50'height='50'><h2>{{ sharing.user }}</h2>
     </div>
     <div class="formContainer">
         <div class="formItem">
