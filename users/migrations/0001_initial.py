@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('password', models.CharField(max_length=128, verbose_name='password')),
                 ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
-                ('email', models.TextField(unique=True, verbose_name='유저아이디')),
+                ('email', models.CharField(unique=True, verbose_name='유저아이디')),
                 ('is_team_member', models.BooleanField(default=False, verbose_name='팀 멤버 유무')),
             ],
             options={
