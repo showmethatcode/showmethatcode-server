@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model, get_user
 from users.models import User
 import datetime
 
-#s views = 비지니스 로직
+
 def detail(request, sharing_id):
     sharing_group = SharingGroup.objects.get(pk=sharing_id)
     sharings = sharing_group.sharing_set.all()
