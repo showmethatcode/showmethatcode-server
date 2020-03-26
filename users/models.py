@@ -24,10 +24,10 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     
     def user_profile_images(self):
-        get_user_profile = {
+        get_user_profile_images = {
             'softkey95@gmail.com': static('images/woosik.png'),
             'incleaf@gmail.com': static('images/hyeonsu.png'),
             'koreanhoseon@gmail.com': static('images/hoseon.png'),
             'qpwpep5429@gmail.com': static('images/sangmin.png'),
         }
-        return get_user_profile[self.email]
+        return get_user_profile_images[self.email]
