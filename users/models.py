@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, UserManager
 from django.templatetags.static import static
 
+
 class UserManager(UserManager):
     def create_user(self, *args, **kwargs):
         team_members = [
@@ -14,6 +15,7 @@ class UserManager(UserManager):
         print(kwargs['is_team_member'])
         return super(UserManager, self).create(*args, **kwargs)
 
+
 class User(AbstractBaseUser):
     email = models.TextField(unique=True, verbose_name='유저아이디')
     is_team_member = models.BooleanField(verbose_name='팀 멤버 유무', default=False)
@@ -21,7 +23,7 @@ class User(AbstractBaseUser):
     objects = UserManager()
     USERNAME_FIELD = 'email'
     
-    def user_profile(self):
+    def user_profile_images(self):
         get_user_profile = {
             'softkey95@gmail.com': static('images/woosik.png'),
             'incleaf@gmail.com': static('images/hyeonsu.png'),
@@ -29,5 +31,3 @@ class User(AbstractBaseUser):
             'qpwpep5429@gmail.com': static('images/sangmin.png'),
         }
         return get_user_profile[self.email]
-
-
