@@ -25,8 +25,8 @@ class Migration(migrations.Migration):
             name='Sharing',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('til', models.CharField()),
-                ('action_plan', models.CharField()),
+                ('til', models.TextField()),
+                ('action_plan', models.TextField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('sharing', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sharings.SharingGroup')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),

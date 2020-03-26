@@ -90,13 +90,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 CSRF_COOKIE_SECURE = False
 
 
@@ -153,8 +146,10 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/account/'
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
+KEY = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SECRET = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET',)
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = KEY
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = SECRET
 
