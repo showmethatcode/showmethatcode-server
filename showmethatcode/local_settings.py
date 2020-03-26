@@ -1,8 +1,8 @@
-import os
+from .settings import *
 
-KEY = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
-SECRET = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET',)
-
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = KEY
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = SECRET
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
