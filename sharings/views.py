@@ -3,9 +3,10 @@ from django.http import HttpResponse
 from sharings.models import Sharing, SharingGroup
 from django.urls import reverse
 from django.contrib.auth import get_user_model, get_user
+from users.models import User
 import datetime
 
-#s views = 비지니스 로직
+
 def detail(request, sharing_id):
     sharing_group = SharingGroup.objects.get(pk=sharing_id)
     sharings = sharing_group.sharing_set.all()
@@ -25,7 +26,6 @@ def home(request):
         sharing_groups = SharingGroup.objects.all().order_by('-date')[:7]
         sharing_today = Sharing.objects.filter(user=request.user, created_at__date=datetime.date.today())
         can_check_in = len(sharing_today) == 0
-
         return render(request, 'sharings.html', {
             'groups': sharing_groups,
             'can_check_in': can_check_in,
