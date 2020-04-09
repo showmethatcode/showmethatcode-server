@@ -9,7 +9,6 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='administrator'),
     path('', index, name='index'),
     path('', include('social_django.urls', namespace='social')),
-    # path('', views_main.index, name='index'),
     path(
         'logout/',
         LogoutView.as_view(template_name=settings.LOGOUT_REDIRECT_URL),
@@ -18,6 +17,6 @@ urlpatterns = [
     path('account/', account, name='account'),
     path('sharings/', views.home, name='sharings'),
     path('write/', views.write, name='write'),
-    path('detail/<int:sharing_id>/', views.detail, name='detail'),
+    path('sharings/<int:sharing_id>/', views.detail, name='detail'),
     path('detail/', views.detail_temp),
 ]
