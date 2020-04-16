@@ -16,11 +16,6 @@ def detail(request, sharing_id):
         'sharings': sharings
     })
 
-
-def detail_temp(request):
-    return HttpResponseRedirect('/detail/1')
-
-
 def home(request):
     if request.method =='GET':
         sharing_groups = SharingGroup.objects.all().order_by('-date')[:7]
@@ -59,3 +54,30 @@ def write(request):
             return render(request, 'sharings.html', {
                 'error_message': error_message
             })
+def edit_form(request, sharing_id, user_id):
+    sharing_group = SharingGroup.objects.filter(pk=sharing_id)
+    sharing = sharing_group.sharing_set.filter(user_id=user_id)
+    return render(request, 'detail.html', {
+        'id': sharing_id,
+        'date': sharing_group.date,
+        'sharing': sharing
+    })
+
+def edit(request, sharing_id):
+    til = request.POST.get('til', '')
+    action_plan = request.POST.get('action_plan', '')
+    error_message = ''
+
+    if til or action_plan == '':
+        error_message = 'TIL 혹은 Action Plan이 작성되지 않았습니다.'
+
+    sharing = SharingGroup.objects.get(pk=sharing_id)
+    sharing.til = til
+    sharing.action_plan = action_plan
+    sharing.save()
+
+
+    return render('sharings.html', {
+        'error_message': error_message,
+        'success_message': success_message,
+    })
