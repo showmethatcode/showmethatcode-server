@@ -16,11 +16,6 @@ def detail(request, sharing_id):
         'sharings': sharings
     })
 
-
-def detail_temp(request):
-    return HttpResponseRedirect('/detail/1')
-
-
 def home(request):
     if request.method =='GET':
         sharing_groups = SharingGroup.objects.all().order_by('-date')[:7]
@@ -59,3 +54,24 @@ def write(request):
             return render(request, 'sharings.html', {
                 'error_message': error_message
             })
+def edit_form(request, sharing_id):
+    user = get_user(request)
+    sharing_group = SharingGroup.objects.filter(id=sharing_id).get()
+    sharing = sharing_group.sharing_set.all().filter(user_id=user).get()
+    return render(request, 'edit.html', {
+        'id': sharing_id,
+        'date': sharing_group.date,
+        'sharing': sharing
+    })
+
+def edit(request, sharing_id):
+    til = request.POST.get('til', '')
+    action_plan = request.POST.get('action_plan', '')
+    user = get_user(request)
+    sharing_group = SharingGroup.objects.get(pk=sharing_id)
+    sharing = sharing_group.sharing_set.get(user_id=user)
+    sharing.til = til
+    sharing.action_plan = action_plan
+    sharing.save()
+
+    return redirect('/sharings/{}'.format(sharing_id))

@@ -49,16 +49,16 @@ body {
     margin-bottom: 21px;
 }
 
-/* detail */
-.detail {
+/* edit */
+.edit {
 }
 
-.detail img {
+.edit img {
     border-radius: 50%;
     display: inline;
     vertical-align: middle;
 }
-.detail h2 {
+.edit h2 {
     display: inline;
     margin-left: 6px;
     font-size: 16px;
@@ -78,17 +78,7 @@ body {
 .formItem + .formItem {
     margin-left: 20px;
 }
-/*
-.inputstr2 {
-    border: 0px;
-    resize: none;
-    line-height: normal;
-    padding: .8em .5em;
-    width: 340px;
-    height: 105px;
-    background-color: #fbfbfb;
-}
-*/
+
 .inputstr3 {
     border: 0px;
     color: #2a2a2a;
@@ -100,6 +90,7 @@ body {
     height: 105px;
     background-color: #fbfbfb;
 }
+
 
 button {
     width: 154px;
