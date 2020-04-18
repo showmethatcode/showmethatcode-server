@@ -54,10 +54,11 @@ def write(request):
             return render(request, 'sharings.html', {
                 'error_message': error_message
             })
-def edit_form(request, sharing_id, user_id):
-    sharing_group = SharingGroup.objects.filter(pk=sharing_id)
-    sharing = sharing_group.sharing_set.filter(user_id=user_id)
-    return render(request, 'detail.html', {
+def edit_form(request, sharing_id):
+    user = get_user(request)
+    sharing_group = SharingGroup.objects.filter(id=sharing_id).get()
+    sharing = sharing_group.sharing_set.all().filter(user_id=user).get()
+    return render(request, 'edit.html', {
         'id': sharing_id,
         'date': sharing_group.date,
         'sharing': sharing
@@ -66,18 +67,11 @@ def edit_form(request, sharing_id, user_id):
 def edit(request, sharing_id):
     til = request.POST.get('til', '')
     action_plan = request.POST.get('action_plan', '')
-    error_message = ''
-
-    if til or action_plan == '':
-        error_message = 'TIL 혹은 Action Plan이 작성되지 않았습니다.'
-
-    sharing = SharingGroup.objects.get(pk=sharing_id)
+    user = get_user(request)
+    sharing_group = SharingGroup.objects.get(pk=sharing_id)
+    sharing = sharing_group.sharing_set.get(user_id=user)
     sharing.til = til
     sharing.action_plan = action_plan
     sharing.save()
 
-
-    return render('sharings.html', {
-        'error_message': error_message,
-        'success_message': success_message,
-    })
+    return redirect('/sharings/{}'.format(sharing_id))

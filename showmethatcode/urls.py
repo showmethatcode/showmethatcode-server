@@ -3,7 +3,7 @@ from django.urls import include, path
 from django.contrib import admin
 from showmethatcode import settings
 from showmethatcode.views import account, index
-from sharings.views import home, write, detail, edit
+from sharings.views import home, write, detail, edit_form, edit
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='administrator'),
@@ -17,6 +17,7 @@ urlpatterns = [
     path('account/', account, name='account'),
     path('sharings/', home, name='sharings'),
     path('write/', write, name='write'),
+    path('edit/<int:sharing_id>', edit, name='edit'),
     path('sharings/<int:sharing_id>/', detail, name='detail'),
-    path('sharings/edit/<int:sharing_id>/', edit, name='')
+    path('sharings/edit/<int:sharing_id>/', edit_form, name='edit_form')
 ]

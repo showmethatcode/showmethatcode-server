@@ -4,7 +4,7 @@
  <head>
     <title>{{ date }} - showmethatcode</title>
     <meta charset="utf-8">
-    <link href="{% static 'css/detail.css' %}" rel='stylesheet'>
+    <link href="{% static 'css/edit.css' %}" rel='stylesheet'>
  </head>
  <body>
     <div class='title'>
@@ -14,23 +14,27 @@
        <h2>🙌 매일 오후 11시, 오늘 배운 것과 내일 계획을 공유합니다. <a href='index_introduction.html'>showmethatcode 팀 소개</a></h2>
    </div>
    <div class='today'>{{ date }}</div>
-   <form action="/write/" method='POST'>
-    {% csrf_token %}
-        <div class='checkin'>
-            <div class="highlight"></div>
-            <h1>🔥 체크인</h1>
-            <div class='textbox1'>
-            <h2>오늘 배운 것</h2>
-            <textarea name="til" class='inputstr3'>{{ sharing.til }}</textarea>
-            </div>
-            <div class='textbox2'>
-            <h2>내일 계획</h2>
-            <textarea name="action_plan" class='inputstr3'>{{ sharing.action_plan }}</textarea>
-            </div>
-            {% if error_message %}
-                <p>{{ error_message }}</p>
-            {% endif %}
-            <button type="submit"><h3>작성 완료</h3></button>
-        </div>
-    </form>
+
 <div>
+    <div class='edit'>
+        <img src="{{ sharing.user.user_profile_images }}" width='50'height='50'><h2>{{ sharing.user }}</h2>
+    </div>
+    <form action="/edit/{{id}}" method='POST'>
+        {% csrf_token %}
+    <div class="formContainer">
+        <div class="formItem">
+            <h2 class="formTitle">📝 오늘 배운 것</h2>
+            <div class='inputstr3'>
+                <textarea name="til" class='inputstr3'>{{ sharing.til|linebreaksbr }}</textarea>
+            </div>
+        </div>
+        <div class="formItem">
+            <h2 class="formTitle">🙏 내일 계획</h2>
+            <div class='inputstr3'>
+                <textarea name="action_plan" class='inputstr3'>{{ sharing.action_plan|linebreaksbr }}</textarea>
+            </div>
+        </div>
+    </div>
+    <button type="submit"><h3>작성 완료</h3></button>
+    </form>
+</div>
