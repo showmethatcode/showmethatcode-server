@@ -21,11 +21,14 @@ def home(request):
         sharing_groups = SharingGroup.objects.all().order_by('-date')[:7]
         sharing_today = Sharing.objects.filter(user=request.user, created_at__date=datetime.date.today())
         can_check_in = len(sharing_today) == 0
+        user = User.objects.get(pk=request.user.id)
+        is_team_member = user.is_team_member if user else None
+
         return render(request, 'sharings.html', {
             'groups': sharing_groups,
             'can_check_in': can_check_in,
+            'is_team_member': is_team_member
         })
-
 
 def write(request):
     if request.method == 'POST':
