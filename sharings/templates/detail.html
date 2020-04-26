@@ -24,13 +24,21 @@
         <div class="formItem">
             <h2 class="formTitle">📝 오늘 배운 것</h2>
             <div class='inputstr3'>
+            {% if sharing.is_secret and not is_team_member %}
+                비밀글임
+            {% else %}
                 {{ sharing.til|linebreaksbr }}
+            {% endif %}
             </div>
         </div>
         <div class="formItem">
             <h2 class="formTitle">🙏 내일 계획</h2>
             <div class='inputstr3'>
+            {% if sharing.is_secret and not is_team_member %}
+                비밀글임
+            {% else %}
                 {{ sharing.action_plan|linebreaksbr }}
+            {% endif %}
             </div>
         </div>
     </div>
