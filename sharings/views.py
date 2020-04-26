@@ -10,10 +10,17 @@ import datetime
 def detail(request, sharing_id):
     sharing_group = SharingGroup.objects.get(pk=sharing_id)
     sharings = sharing_group.sharing_set.all()
+    if request.user.is_authenticated:
+        is_team_member = request.user.is_team_member
+    else:
+        is_team_member = False
+    # is_team_member = request.user.is_team_member if request.user.is_authenticated else False // 삼항연산자
+    print(is_team_member)
     return render(request, 'detail.html', {
         'id': sharing_id,
         'date': sharing_group.date,
-        'sharings': sharings
+        'sharings': sharings,
+        'is_team_member': is_team_member
     })
 
 def home(request):
@@ -32,6 +39,8 @@ def write(request):
         created_at = request.POST.get('created_at', '')
         til = request.POST.get('til', '')
         action_plan = request.POST.get('action_plan', '')
+        is_secret = request.POST.get('test', '')  == 'on'
+        print(is_secret)
         error_message = ''
 
         if til == '':
@@ -47,13 +56,14 @@ def write(request):
         group_id = sharing_group.id
 
         if not error_message and user.is_authenticated:
-            sharings = Sharing.objects.create(created_at=created_at, til=til, action_plan=action_plan, user=user, sharing_id=group_id)
+            sharings = Sharing.objects.create(created_at=created_at, til=til, action_plan=action_plan, user=user, sharing_id=group_id, is_secret=is_secret)
             sharings.save()
-            return redirect('/')
+            return redirect('/sharings')
         else:
             return render(request, 'sharings.html', {
                 'error_message': error_message
             })
+
 def edit_form(request, sharing_id):
     user = get_user(request)
     sharing_group = SharingGroup.objects.filter(id=sharing_id).get()

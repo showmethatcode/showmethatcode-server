@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "venv/bin/python",
+    "workbench.colorCustomizations":{   
+    },
+    "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+    "editor.wordWrap": "on"
+}
