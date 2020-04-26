@@ -39,7 +39,7 @@ def write(request):
         created_at = request.POST.get('created_at', '')
         til = request.POST.get('til', '')
         action_plan = request.POST.get('action_plan', '')
-        is_secret = request.POST.get('test', '')  == 'on'
+        is_secret = request.POST.get('is_secret', '')  == 'on'
         print(is_secret)
         error_message = ''
 
