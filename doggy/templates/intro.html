@@ -9,6 +9,7 @@
         <link href="{% static 'css/doggy_intro.css' %}" rel='stylesheet'>
       <script>
       $(document).ready(function(){
+        let choice_list = []
         $('input[type=radio]').click(function() {
           const questionSet = $(this).closest('.question-set');
           const id = questionSet.data('questionId');
@@ -16,52 +17,40 @@
 
           if (nextQuestionSet.length > 0) {
             nextQuestionSet.fadeIn(700);
+            let choice = $(this).attr('id');
+
           } else {
-            $(location).attr('href', '/doggy/ddd/')
-          }         
+            $('form').submit()
+            {% comment %} $(location).attr('href', '/doggy/ddd/') {% endcomment %}
+          }
         })
-      })
+      });
       </script>
     </head>
     <body>
+    <form method="POST" action="/doggy/">
         <div class="title">내게 맞는<br>댕댕이 찾기 🐶</div>
         <div class="sub-title">나랑 잘 맞는 댕댕이를 1분만에 확인해보세요.</div>
-    <div class='question-set' data-question-id="1">
-        <div class='question-container'>
-           <div class="sub-title2" id="q1">나는 강아지를 보면..</div>
-           <div class="question-number" id="qn1">(1/10)</div>
-        </div>
-      <div class="radio-toolbar">
-        <input type="radio" id="radio1" name="radio-container" value="yes">
-        <label for="radio1" class="1">잘 다가가는 편이다.</label>
-        <input type="radio" id="radio2" name="radio-container" value="no">
-        <label for="radio2" class="1">멀찍이 지켜보는 편이다.</label>
-      </div>
-    </div>
-    <div class='question-set' data-question-id="2" style="display: none;">
-        <div class='question-container'>
-         <div class="sub-title2">나는 강아지를 보면..</div>
-         <div class="question-number">(2/10)</div>
-      </div>
-      <div class="radio-toolbar">
-        <input type="radio" id="radio3" name="radio-container2" value="yes">
-        <label for="radio3" class="2">그렇다</label>
-        <input type="radio" id="radio4" name="radio-container2" value="no">
-        <label for="radio4" class="2">아니다</label>
-      </div>
-    </div>
-    <div class='question-set' data-question-id="3" style="display: none;">
-        <div class='question-container'>
-         <div class="sub-title2">나는 강아지를 보면..</div>
-         <div class="question-number">(3/10)</div>
-      </div>
-      <div class="radio-toolbar">
-        <input type="radio" id="radio5" name="radio-container3" value="yes">
-        <label for="radio5" class="3">맞다</label>
-        <input type="radio" id="radio6" name="radio-container3" value="no">
-        <label for="radio6" class="3">틀리다</label>
-      </div>
-    </div>
-    </div>
+        {% for question in questions %}
+          {% if question.pk == 1 %}
+          <div class='question-set' data-question-id="{{ question.pk }}">
+          {% else %}
+          <div class='question-set' data-question-id="{{ question.pk }}" style="display: none;">
+          {% endif %}
+            <div class='question-container'>
+              <div class="sub-title2">{{ question.question }}</div>
+              <div class="question-number">({{ question.pk }}/10)</div>
+            </div>
+            <div class="radio-toolbar">
+            {% for choice in choices %}
+              {% if choice.question.pk == question.pk %}
+              <input type="radio" id="{{ choice.pk }}" name="radio-container{{ question.pk }}" value="{{ choice.pk }}">
+              <label for="{{ choice.pk }}" class="{{ question.pk }}">{{ choice.text }}</label>
+              {% endif %}
+            {% endfor %}
+            </div>
+          </div>
+      {% endfor %}
+      </form>
     </body>
 </html>

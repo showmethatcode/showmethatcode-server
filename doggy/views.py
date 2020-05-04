@@ -1,36 +1,48 @@
 from django.shortcuts import render, redirect
-from .models import Dogs, UserStats
+from .models import Dogs, Question, Choice
 from django.views.decorators.csrf import csrf_exempt
+import random
 
 @csrf_exempt
 def intro(request):
     if request.method == 'GET':
-        return render(request, 'intro.html', {})
+        questions = Question.objects.all()
+        choices = Choice.objects.all()
+        return render(request, 'intro.html', {
+            'questions': questions,
+            'choices': choices,
+            })
     else:
-        confidence = int(request.POST.get('confidence', 0))
-        shyness = int(request.POST.get('shyness', 0))
-        independence = int(request.POST.get('independence', 0))
-        positive = int(request.POST.get('positive', 0))
-        adaptability = int(request.POST.get('adaptability', 0))
+        questions = Question.objects.all()
+        number_of_question = len(questions)
+        choices = []
 
         user = {
-            'confidence': confidence,
-            'shyness': shyness,
-            'independence': independence,
-            'positive': positive,
-            'adaptability': adaptability
+            'Confidence': 0,
+            'Shyness': 0,
+            'Independence': 0,
+            'Positiveness': 0,
+            'Adaptability': 0
         }
+
+        for i in range(number_of_question):
+            i = i + 1
+            pk = int(request.POST.get('radio-container{}'.format(str(i))))
+            choice = Choice.objects.get(pk=pk)
+            personality = choice.question.personality
+            score = choice.score
+            user[personality] = user[personality] + score
 
         dogs = Dogs.objects.all()
         penalty_dict = {}
         for dog in dogs:
-            confidence = abs(user['confidence'] - dog.confidence)
-            shyness = abs(user['shyness'] - dog.shyness)
-            independence = abs(user['independence'] - dog.independence)
-            positive = abs(user['positive'] - dog.positive)
-            adaptability = abs(user['positive'] - dog.adaptability)
-            penalty = confidence + shyness + independence + positive + adaptability
-            penalty_dict[dog.types] = penalty
+            confidence = abs(user['Confidence'] - dog.confidence)
+            shyness = abs(user['Shyness'] - dog.shyness)
+            independence = abs(user['Independence'] - dog.independence)
+            positiveness = abs(user['Positiveness'] - dog.positiveness)
+            adaptability = abs(user['Adaptability'] - dog.adaptability)
+            penalty = confidence + shyness + independence + positiveness + adaptability
+            penalty_dict[dog.breed] = penalty
 
         penalty_list = sorted(penalty_dict.items(), key = lambda kv: (kv[1], kv[0]))
 
@@ -38,33 +50,17 @@ def intro(request):
 
         pivot_penalty = penalty_list[0][1]
 
-        for idx, (types, penalty) in enumerate(penalty_list):
+        for idx, (breed, penalty) in enumerate(penalty_list):
             if penalty != pivot_penalty:
                 del penalty_list[idx]
-        print(penalty_list)
 
+        breed, penalty = penalty_list[random.randint(0, len(penalty_list)-1)]
 
-
-
-
-
-
-        # UserStats.objects.create(
-        #     confidence=confidence,
-        #     shyness=shyness,
-        #     independence=independence,
-        #     positive=positive,
-        #     adaptability=adaptability,
-        #     doggy=types,
-        # )
-
-        # doggy = types
-        return redirect('/doggy/{}'.format(doggy))
+        return redirect('/doggy/{}'.format(breed))
 
 @csrf_exempt
 def result(request, doggy):
-    description = '당신은 어쩌구저쩌구 입니다.'
+    dog = Dogs.objects.get(breed=doggy)
     return render(request, 'result.html', {
-        'doggy': doggy,
-        'description': description
+        'dog': dog
     })
