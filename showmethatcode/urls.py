@@ -19,5 +19,6 @@ urlpatterns = [
     path('write/', write, name='write'),
     path('edit/<int:sharing_id>', edit, name='edit'),
     path('sharings/<int:sharing_id>/', detail, name='detail'),
-    path('sharings/edit/<int:sharing_id>/', edit_form, name='edit_form')
+    path('sharings/edit/<int:sharing_id>/', edit_form, name='edit_form'),
+    path('doggy/', include('doggy.urls')),
 ]
