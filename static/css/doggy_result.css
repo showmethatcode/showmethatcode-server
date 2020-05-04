@@ -2,8 +2,9 @@
     box-sizing: border-box;
 }
 body {
+    font-weight: bold;
     max-width: 500px;
-    margin: 0;
+    margin: 0 auto;
     padding-left: 24px;
     padding-right: 24px;
     color: #2a2a2a;
@@ -16,10 +17,30 @@ body {
     margin-bottom: 34px;
 }
 .dog img {
+    margin-bottom: 49px;
     display: block;
-    width: 194px;
+    width: 210px;
     height: 194px;
     border-radius: 100%;
     margin-left: auto;
     margin-right: auto;
+}
+.explanation {
+    line-height: 36px;
+}
+.share {
+    margin-top: 108px;
+    margin-bottom: 25px;
+}
+.copy-button {
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+    width: 100%;
+    border: 1px solid black;
+    text-align: center;
+    padding: 20px;
+    border: none;
+    background-color: #3b5fe4;
+    border-radius: 20px;
 }
