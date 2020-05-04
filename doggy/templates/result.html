@@ -1,6 +1,14 @@
 <!DOCTYPE HTML>
 {% load static %}
 <html>
-    {{ doggy }}
-    {{ description }}
+  <head>
+    <title>내게 맞는 댕댕이 찾기</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <link href="{% static 'css/doggy_result.css' %}" rel='stylesheet'>
+  </head>
+  <body>
+    <div class="title">당신에게 잘 맞는 댕댕이는 '불독'입니다 🐶</div>
+    <div class="dog"><img src="../../static/images/bulldog.jpg"></div>
+  </body>
 </html>

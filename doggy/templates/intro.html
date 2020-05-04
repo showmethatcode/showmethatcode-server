@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>내게 맞는 댕댕이 찾기</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+        <link href="{% static 'css/doggy_intro.css' %}" rel='stylesheet'>
+    </head>
+    <body>
+        <div class="title">내게 맞는<br>댕댕이 찾기 🐶</div>
+        <div class="sub-title">나랑 잘 맞는 댕댕이를 1분만에 확인해보세요.</div>
+    <div class='question-set'>
+        <div class='question-container'>
+           <div class="sub-title2">나는 강아지를 보면..</div>
+           <div class="question-number">(1/10)</div>
+        </div>
+      <div class="radio-toolbar">
+        <input type="radio" id="radio1" name="radio-container" value="yes">
+        <label for="radio1">잘 다가가는 편이다.</label>
+        <input type="radio" id="radio2" name="radio-container" value="no">
+        <label for="radio2">멀찍이 지켜보는 편이다.</label>
+      </div>
+    </div>
+    <div class='question-set'>
+        <div class='question-container'>
+         <div class="sub-title2">나는 강아지를 보면..</div>
+         <div class="question-number">(2/10)</div>
+      </div>
+      <div class="radio-toolbar">
+        <input type="radio" id="radio3" name="radio-container2" value="yes">
+        <label for="radio3">그렇다</label>
+        <input type="radio" id="radio4" name="radio-container2" value="no">
+        <label for="radio4">아니다</label>
+      </div>
+    </div>
+    <div class='question-set'>
+        <div class='question-container'>
+         <div class="sub-title2">나는 강아지를 보면..</div>
+         <div class="question-number">(3/10)</div>
+      </div>
+      <div class="radio-toolbar">
+        <input type="radio" id="radio5" name="radio-container3" value="yes">
+        <label for="radio5">맞다</label>
+        <input type="radio" id="radio6" name="radio-container3" value="no">
+        <label for="radio6">틀리다</label>
+      </div>
+    </div>
+      <div class='question-set'>
+        <div class='question-container'>
+         <div class="sub-title2">나는 강아지를 보면..</div>
+         <div class="question-number">(4/10)</div>
+      </div>
+      <div class="radio-toolbar">
+        <input type="radio" id="radio7" name="radio-container4" value="yes">
+        <label for="radio7">옳다</label>
+        <input type="radio" id="radio8" name="radio-container4" value="no">
+        <label for="radio8">그르다</label>
+      </div>
+    </div>
+    </body>
+</html>
