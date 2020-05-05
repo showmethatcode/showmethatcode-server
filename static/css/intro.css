@@ -25,13 +25,13 @@ body {
     margin-bottom: 50px;
 }
 .mission-title, .members-title {
-    font-size: 26px;
+    font-size: 18px;
     font-weight: bold;
     margin-bottom: 9px;
 }
 .mission-explanation {
     font-size: 18px;
-    line-height: 27px;
+    line-height: 30px;
 }
 .mission-explanation a {
     color: #0162FA;
@@ -50,12 +50,12 @@ ul {
     padding-left: 0px;
     font-weight: normal;
     font-size: 18px;
-    line-height: 27px;
+    line-height: 30px;
     margin-left: 20px;
     color: #2b2b2b;
 }
 .mission-li a {
-    color: #0162fa;
+    color: #2b2b2b;
 }
 /* how */
 .how {
@@ -146,22 +146,24 @@ ul {
     }
     /* mission */
     .mission {
-        margin-top: 30px;
-        margin-bottom: 24px;
+        margin-top: 48px;
+        margin-bottom: 42px;
     }
     .mission-title {
-        margin-bottom: 11px;
-        font-size: 20px;
+        margin-bottom: 9px;
     }
     .mission-explanation {
-        font-size: 16px;
+        font-size: 17px;
+    }
+    .mission-explanation > a {
+        color: #2b2b2b;
     }
     .mission-li {
-        font-size: 16px;
+        font-size: 17px;
     }
     /* how */
     .how {
-        margin-bottom: 22px;
+        margin-bottom: 39px;
     }
     /* focus */
     .focus > .mission-title {
@@ -169,7 +171,7 @@ ul {
         margin-bottom: 11px;
     }
     .focus {
-        margin-bottom: 24px;
+        margin-bottom: 43px;
     }
     /* plans */
     .plans {
