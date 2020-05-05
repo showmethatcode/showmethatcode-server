@@ -16,8 +16,10 @@
         let choice = $(this).attr('id');
 
       } else {
-        $('form').submit()
-        {% comment %} $(location).attr('href', '/doggy/ddd/') {% endcomment %}
+        $('#loader').show();
+        setTimeout(function() {
+          $('form').submit()
+        }, 2000);
       }
     })
   });
@@ -40,11 +42,15 @@
             </div>
             <div class="radio-toolbar">
             {% for choice in question.choice_set.all %}
-              <input type="radio" id="{{ choice.pk }}" name="radio-container{{ forloop.counter }}" value="{{ choice.pk }}">
+              <input type="radio" id="{{ choice.pk }}" name="radio-container{{ quetion.pk }}" value="{{ choice.pk }}">
               <label for="{{ choice.pk }}" class="{{ forloop.counter }}">{{ choice.text }}</label>
             {% endfor %}
             </div>
           </div>
       {% endfor %}
     </form>
+    <div id="loader" style="display: none;">
+      <span class="emoji rotating">🐶</span>
+      <span class="text">결과를 분석중입니다...</span>
+    </div>
 {% endblock %}

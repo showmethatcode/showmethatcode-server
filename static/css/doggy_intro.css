@@ -73,3 +73,53 @@ body {
       background-color: #ffb218;
       border-color:  #fff5e0;
   }
+  
+  @-webkit-keyframes rotating /* Safari and Chrome */ {
+    from {
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rotating {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .rotating {
+    animation: rotating 1s ease-in-out infinite;
+  }
+
+  #loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+}
+
+  #loader > .emoji {
+      font-size: 64px;
+      display: block;
+      text-align: center;
+  }
+
+  #loader > .text {
+      display: block;
+      margin-top: 8px;
+  }
