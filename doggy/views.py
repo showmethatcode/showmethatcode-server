@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Dogs, Question, Choice
+from .models import Dog, Question, Choice
 from django.views.decorators.csrf import csrf_exempt
 import random
 
@@ -27,13 +27,14 @@ def intro(request):
 
         for i in range(number_of_question):
             i = i + 1
-            pk = int(request.POST.get('radio-container{}'.format(str(i))))
+            pk = request.POST.get('radio-container{}'.format(str(i)))
+            print(pk)
             choice = Choice.objects.get(pk=pk)
             personality = choice.question.personality
             score = choice.score
             user[personality] = user[personality] + score
 
-        dogs = Dogs.objects.all()
+        dogs = Dog.objects.all()
         penalty_dict = {}
         for dog in dogs:
             confidence = abs(user['Confidence'] - dog.confidence)
@@ -60,7 +61,7 @@ def intro(request):
 
 @csrf_exempt
 def result(request, doggy):
-    dog = Dogs.objects.get(breed=doggy)
+    dog = Dog.objects.get(breed=doggy)
     return render(request, 'result.html', {
         'dog': dog
     })
