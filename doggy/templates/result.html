@@ -20,6 +20,7 @@
       document.execCommand("copy");
       document.body.removeChild(tempElem);
       alert('링크를 복사했습니다.')
+      gtag('event', 'click_copy_button')
     })
     </script>
 {% endblock %}
