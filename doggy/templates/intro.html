@@ -42,7 +42,7 @@
             </div>
             <div class="radio-toolbar">
             {% for choice in question.choice_set.all %}
-              <input type="radio" id="{{ choice.pk }}" name="radio-container{{ quetion.pk }}" value="{{ choice.pk }}">
+              <input type="radio" id="{{ choice.pk }}" name="radio-container{{ question.pk }}" value="{{ choice.pk }}">
               <label for="{{ choice.pk }}" class="{{ forloop.counter }}">{{ choice.text }}</label>
             {% endfor %}
             </div>
