@@ -1,56 +1,50 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>내게 맞는 댕댕이 찾기</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <link href="{% static 'css/doggy_intro.css' %}" rel='stylesheet'>
-      <script>
-      $(document).ready(function(){
-        let choice_list = []
-        $('input[type=radio]').click(function() {
-          const questionSet = $(this).closest('.question-set');
-          const id = questionSet.data('questionId');
-          const nextQuestionSet = $(`.question-set[data-question-id=${id + 1}]`)
 
-          if (nextQuestionSet.length > 0) {
-            nextQuestionSet.fadeIn(700);
-            let choice = $(this).attr('id');
+{% block head %}
+<link href="{% static 'css/doggy_intro.css' %}" rel='stylesheet'>
+<script>
+  $(document).ready(function(){
+    let choice_list = []
+    $('input[type=radio]').click(function() {
+      const questionSet = $(this).closest('.question-set');
+      const id = questionSet.data('questionId');
+      const nextQuestionSet = $(`.question-set[data-question-id=${id + 1}]`)
 
-          } else {
-            $('form').submit()
-            {% comment %} $(location).attr('href', '/doggy/ddd/') {% endcomment %}
-          }
-        })
-      });
-      </script>
-    </head>
-    <body>
+      if (nextQuestionSet.length > 0) {
+        nextQuestionSet.fadeIn(700);
+        let choice = $(this).attr('id');
+
+      } else {
+        $('form').submit()
+        {% comment %} $(location).attr('href', '/doggy/ddd/') {% endcomment %}
+      }
+    })
+  });
+  </script>
+{% endblock %}
+
+{% block body %}
     <form method="POST" action="/doggy/">
         <div class="title">내게 맞는<br>댕댕이 찾기 🐶</div>
         <div class="sub-title">나랑 잘 맞는 댕댕이를 1분만에 확인해보세요.</div>
         {% for question in questions %}
-          {% if question.pk == 1 %}
-          <div class='question-set' data-question-id="{{ question.pk }}">
+          {% if forloop.counter == 1 %}
+          <div class='question-set' data-question-id="{{ forloop.counter }}">
           {% else %}
-          <div class='question-set' data-question-id="{{ question.pk }}" style="display: none;">
+          <div class='question-set' data-question-id="{{ forloop.counter }}" style="display: none;">
           {% endif %}
             <div class='question-container'>
               <div class="sub-title2">{{ question.question }}</div>
-              <div class="question-number">({{ question.pk }}/10)</div>
+              <div class="question-number">({{ forloop.counter }}/{{ questions|length }})</div>
             </div>
             <div class="radio-toolbar">
-            {% for choice in choices %}
-              {% if choice.question.pk == question.pk %}
-              <input type="radio" id="{{ choice.pk }}" name="radio-container{{ question.pk }}" value="{{ choice.pk }}">
-              <label for="{{ choice.pk }}" class="{{ question.pk }}">{{ choice.text }}</label>
-              {% endif %}
+            {% for choice in question.choice_set.all %}
+              <input type="radio" id="{{ choice.pk }}" name="radio-container{{ forloop.counter }}" value="{{ choice.pk }}">
+              <label for="{{ choice.pk }}" class="{{ forloop.counter }}">{{ choice.text }}</label>
             {% endfor %}
             </div>
           </div>
       {% endfor %}
-      </form>
-    </body>
-</html>
+    </form>
+{% endblock %}
