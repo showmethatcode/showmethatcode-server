@@ -10,15 +10,16 @@
     {{ dog.description | linebreaksbr }}
     </div>
     <div class="share">친구들에게 공유하기</div>
+    <button class="copy-button">링크 복사하기</button>
     <script>
     $('.copy-button').click(function() {
       var tempElem = document.createElement('textarea');
-      tempElem.value = 'I am copied text!';  
+      tempElem.value = 'https://showmethatcode.team/doggy/';  
       document.body.appendChild(tempElem);
       tempElem.select();
       document.execCommand("copy");
       document.body.removeChild(tempElem);
+      alert('링크를 복사했습니다.')
     })
     </script>
-    <button class="copy-button">링크 복사하기</button>
 {% endblock %}
