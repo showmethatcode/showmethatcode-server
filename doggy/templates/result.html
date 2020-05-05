@@ -1,22 +1,24 @@
 {% extends "base.html" %}
-<!DOCTYPE HTML>
 {% load static %}
-{% block content %}
-<html>
-  <head>
-    <title>내게 맞는 댕댕이 찾기</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+{% block head %}
     <link href="{% static 'css/doggy_result.css' %}" rel='stylesheet'>
-  </head>
-  <body>
+{% endblock %}
+{% block body %}
     <div class="title">당신에게 잘 맞는 댕댕이는<br>'{{ dog.breed_kr }}' 입니다 🐶</div>
     <div class="dog"><img src="{{ dog.image }}"></div>
     <div class="explanation">
     {{ dog.description | linebreaksbr }}
     </div>
     <div class="share">친구들에게 공유하기</div>
+    <script>
+    $('.copy-button').click(function() {
+      var tempElem = document.createElement('textarea');
+      tempElem.value = 'I am copied text!';  
+      document.body.appendChild(tempElem);
+      tempElem.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempElem);
+    })
+    </script>
     <button class="copy-button">링크 복사하기</button>
-  </body>
-</html>
 {% endblock %}
