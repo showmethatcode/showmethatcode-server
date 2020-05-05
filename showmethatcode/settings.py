@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'sharings.apps.SharingsConfig',
     'social_django',
     'showmethatcode',
+    'doggy'
 ]
 
 MIDDLEWARE = [

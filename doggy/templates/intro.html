@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link href="{% static 'css/doggy_intro.css' %}" rel='stylesheet'>
+<script>
+  $(document).ready(function(){
+    let choice_list = []
+    $('input[type=radio]').click(function() {
+      const questionSet = $(this).closest('.question-set');
+      const id = questionSet.data('questionId');
+      const nextQuestionSet = $(`.question-set[data-question-id=${id + 1}]`)
+
+      if (nextQuestionSet.length > 0) {
+        nextQuestionSet.fadeIn(700);
+        let choice = $(this).attr('id');
+
+      } else {
+        $('#loader').show();
+        setTimeout(function() {
+          $('form').submit()
+        }, 2000);
+      }
+    })
+  });
+  </script>
+{% endblock %}
+
+{% block body %}
+    <form method="POST" action="/doggy/">
+        <div class="title">내게 맞는<br>댕댕이 찾기 🐶</div>
+        <div class="sub-title">나랑 잘 맞는 댕댕이를 1분만에 확인해보세요 ✨</div>
+        {% for question in questions %}
+          {% if forloop.counter == 1 %}
+          <div class='question-set' data-question-id="{{ forloop.counter }}">
+          {% else %}
+          <div class='question-set' data-question-id="{{ forloop.counter }}" style="display: none;">
+          {% endif %}
+            <div class='question-container'>
+              <div class="sub-title2">{{ question.question }}</div>
+              <div class="question-number">({{ forloop.counter }}/{{ questions|length }})</div>
+            </div>
+            <div class="radio-toolbar">
+            {% for choice in question.choice_set.all %}
+              <input type="radio" id="{{ choice.pk }}" name="radio-container{{ question.pk }}" value="{{ choice.pk }}">
+              <label for="{{ choice.pk }}" class="{{ forloop.counter }}">{{ choice.text }}</label>
+            {% endfor %}
+            </div>
+          </div>
+      {% endfor %}
+    </form>
+    <div id="loader" style="display: none;">
+      <span class="emoji rotating">🐶</span>
+      <span class="text">결과를 분석중입니다...</span>
+    </div>
+{% endblock %}

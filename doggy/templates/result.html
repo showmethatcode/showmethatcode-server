@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+    <link href="{% static 'css/doggy_result.css' %}" rel='stylesheet'>
+{% endblock %}
+{% block body %}
+    <div class="title">당신에게 잘 맞는 댕댕이는<br>'{{ dog.breed_kr }}' 입니다 🐶</div>
+    <div class="dog"><img src="{{ dog.image }}"></div>
+    <div class="explanation">
+    {{ dog.description | linebreaksbr }}
+    </div>
+  <div class="share">친구들에게 공유해보세요 😆🙌</div>
+  <button class="copy-button">링크 복사하기</button>
+  <footer class="footnote">
+    <a class="footnote1" href="/">showmethatcode.team</a>
+    <a class="footnote2" href="/">이 사이트를 만든 사람들 보러가기 👨‍👨‍👦‍👦</a>
+  </footer>
+    <script>
+    $('.copy-button').click(function() {
+      var tempElem = document.createElement('textarea');
+      tempElem.value = 'https://showmethatcode.team/doggy/';  
+      document.body.appendChild(tempElem);
+      tempElem.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempElem);
+      alert('링크를 복사했습니다.')
+      gtag('event', 'click_copy_button')
+    })
+    </script>
+{% endblock %}
