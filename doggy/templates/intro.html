@@ -29,7 +29,7 @@
 {% block body %}
     <form method="POST" action="/doggy/">
         <div class="title">내게 맞는<br>댕댕이 찾기 🐶</div>
-        <div class="sub-title">나랑 잘 맞는 댕댕이를 1분만에 확인해보세요 ✨</div>
+        <div class="sub-title">나랑 맞는 댕댕이를 1분만에 확인해보세요 ✨</div>
         {% for question in questions %}
           {% if forloop.counter == 1 %}
           <div class='question-set' data-question-id="{{ forloop.counter }}">
