@@ -25,7 +25,7 @@ body {
     margin-bottom: 50px;
 }
 .mission-title, .members-title {
-    font-size: 18px;
+    font-size: 26px;
     font-weight: bold;
     margin-bottom: 9px;
 }
@@ -34,7 +34,7 @@ body {
     line-height: 30px;
 }
 .mission-explanation a {
-    color: #0162FA;
+    color: #4b4b4b;
 }
 ul {
     padding-inline-start: unset;
