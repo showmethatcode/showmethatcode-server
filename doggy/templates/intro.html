@@ -13,6 +13,7 @@
 
       if (nextQuestionSet.length > 0) {
         nextQuestionSet.fadeIn(700);
+        $("html, body").animate({ scrollTop: $(document).height() }, "slow");
         let choice = $(this).attr('id');
 
       } else {
