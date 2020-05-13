@@ -14,7 +14,7 @@ urlpatterns = [
         LogoutView.as_view(template_name=settings.LOGOUT_REDIRECT_URL),
         name='logout'
         ),
-    path('account/', account, name='account'),
+    path('login/', account, name='login'),
     path('sharings/', home, name='sharings'),
     path('write/', write, name='write'),
     path('edit/<int:sharing_id>', edit, name='edit'),
