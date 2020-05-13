@@ -26,8 +26,11 @@ def detail(request, sharing_id):
 def home(request):
     if request.method =='GET':
         sharing_groups = SharingGroup.objects.all().order_by('-date')[:7]
-        sharing_today = Sharing.objects.filter(user=request.user, created_at__date=datetime.date.today())
-        can_check_in = len(sharing_today) == 0
+        can_check_in = False
+        if request.user.is_authenticated:
+            sharing_today = Sharing.objects.filter(user=request.user,   created_at__date=datetime.date.today())
+            if request.user.is_team_member and len(sharing_today) == 0:
+                can_check_in = True
         return render(request, 'sharings.html', {
             'groups': sharing_groups,
             'can_check_in': can_check_in,
