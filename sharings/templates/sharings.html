@@ -37,17 +37,17 @@
         </div>
     </form>
     {% endif %}
-    {% for group in groups %}
-    <a class='link' href='/sharings/{{ group.id }}'>
-        <div class='info'>
-        <h2>{{ group.date }}</h2>
-    </div>
-    <div class='images'>
-        {% for sharing in group.sharing_set.all %}
-            <img src="{{ sharing.user.user_profile_images }}" width='50'height='50'>
+        {% for group in groups %}
+        <a class='link' href='/sharings/{{ group.id }}'>
+            <div class='info'>
+            <h2>{{ group.date }}</h2>
+        </div>
+        <div class='images'>
+            {% for sharing in group.sharing_set.all %}
+                <img src="{{ sharing.user.user_profile_images }}" width='50'height='50'>
+            {% endfor %}
+        </div>
+        </a>
         {% endfor %}
-    </div>
-    </a>
-    {% endfor %}
     </body>
 </html>

@@ -19,10 +19,10 @@ class UserManager(UserManager):
 class User(AbstractBaseUser):
     email = models.CharField(unique=True, max_length=200, verbose_name='유저아이디')
     is_team_member = models.BooleanField(verbose_name='팀 멤버 유무', default=False)
-    
+
     objects = UserManager()
     USERNAME_FIELD = 'email'
-    
+
     def user_profile_images(self):
         get_user_profile_images = {
             'softkey95@gmail.com': static('images/woosik.png'),
@@ -30,4 +30,6 @@ class User(AbstractBaseUser):
             'koreanhoseon@gmail.com': static('images/hoseon.png'),
             'qpwpep5429@gmail.com': static('images/sangmin.png'),
         }
-        return get_user_profile_images[self.email]
+        if get_user_profile_images:
+            return get_user_profile_images[self.email]
+        return None
