@@ -70,13 +70,17 @@ def write(request):
             })
 
 def edit_form(request, sharing_id):
-    user = get_user(request)
+    is_authenticated = request.user.is_authenticated
+    is_team_member = False
     sharing_group = SharingGroup.objects.filter(id=sharing_id).get()
-    sharing = sharing_group.sharing_set.all().filter(user_id=user).get()
+    if is_authenticated:
+        is_team_member = request.user.is_team_member
+        sharing = sharing_group.sharing_set.all().filter(user=user).get()
     return render(request, 'edit.html', {
         'id': sharing_id,
         'date': sharing_group.date,
-        'sharing': sharing
+        'sharing': sharing,
+        'is_team_member': is_team_member
     })
 
 def edit(request, sharing_id):

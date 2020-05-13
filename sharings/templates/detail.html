@@ -13,7 +13,9 @@
    <div class='sub-title'>
        <h2>🙌 매일 오후 11시, 오늘 배운 것과 내일 계획을 공유합니다. <a href='index_introduction.html'>showmethatcode 팀 소개</a></h2>
    </div>
+   {% if is_team_member %}
    <button onclick="location.href='/sharings/edit/{{id}}'"><h3>내 글 수정하기</h3></button>
+   {% endif %}
    <div class='today'>{{ date }}</div>
    {% for sharing in sharings %}
    <div>
