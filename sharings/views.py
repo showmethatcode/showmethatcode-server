@@ -79,7 +79,7 @@ def edit_form(request, sharing_id):
             sharing = sharing_group.sharing_set.all().filter(user=user).get()
         except NameError as e:
             error_message = e
-            return error_message
+            return HttpResponse(error_message)
     return render(request, 'edit.html', {
         'id': sharing_id,
         'date': sharing_group.date,
