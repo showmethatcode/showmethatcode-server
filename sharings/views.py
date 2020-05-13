@@ -77,9 +77,8 @@ def edit_form(request, sharing_id):
         is_team_member = request.user.is_team_member
         try:
             sharing = sharing_group.sharing_set.all().filter(user=user).get()
-        except NameError as e:
-            error_message = e
-            return HttpResponse(error_message)
+        except NameError:
+            return HttpResponse('Sharing을 먼저 작성하고 오세요 :)')
     return render(request, 'edit.html', {
         'id': sharing_id,
         'date': sharing_group.date,
