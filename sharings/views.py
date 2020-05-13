@@ -75,7 +75,11 @@ def edit_form(request, sharing_id):
     sharing_group = SharingGroup.objects.filter(id=sharing_id).get()
     if is_authenticated:
         is_team_member = request.user.is_team_member
-        sharing = sharing_group.sharing_set.all().filter(user=user).get()
+        try:
+            sharing = sharing_group.sharing_set.all().filter(user=user).get()
+        except NameError as e:
+            error_message = e
+            return error_message
     return render(request, 'edit.html', {
         'id': sharing_id,
         'date': sharing_group.date,
